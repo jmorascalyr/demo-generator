@@ -1,0 +1,11 @@
+[
+    {
+        "name": "okta",
+        "query": "agent.uuid = * endpoint.name contains 'W10-Attk'| group timestamp = oldest(timestamp), count = count() by agent.uuid, endpoint.name | limit 1",
+        "time_offset": ["-2m", "-1m"],
+        "time_offset_default": "+6m",
+        "startTime": "7d",
+        "endTime": "0h",
+        "file": "./lolbins/okta.json"
+    }
+]

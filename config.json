@@ -1,0 +1,30 @@
+[
+    
+    {
+        "name": "windows event logs client",
+        "query": "agent.uuid = * endpoint.name contains 'W10-Attk'| group timestamp = oldest(timestamp), count = count() by agent.uuid, endpoint.name | limit 1",
+        "time_offset": ["+1m", "-5m", "+2m"],
+        "time_offset_default": "+5m",
+        "startTime": "8d",
+        "endTime": "0h",
+        "file": "wel-client.json"
+    },
+    {
+        "name": "windows server client",
+        "query": "agent.uuid = * endpoint.name contains 'BORG'| group timestamp = oldest(timestamp), count = count() by agent.uuid, endpoint.name | limit 1",
+        "time_offset": ["+1m", "-5m", "+2m"],
+        "time_offset_default": "-5m",  
+        "startTime": "8d",
+        "endTime": "0h",
+        "file": "wel-server.json"
+    },
+    {
+        "name": "okta",
+        "query": "agent.uuid = * | limit 1 | columns timestamp",
+        "time_offset": ["-800s", "-755s", "-743s","-733s","-725s","-724s","-712s","-699s","-690s","-685s", "-645s", "-665s"],
+        "time_offset_default": "-5m",  
+        "startTime": "8d",
+        "endTime": "0h",
+        "file": "okta.json"
+    }
+]
