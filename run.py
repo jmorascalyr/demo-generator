@@ -111,7 +111,7 @@ def upload_to_api(file_path):
                 "sev": int(event.get('sev', 3)),  # Severity as integer
                 "attrs": {
                     "message": message,
-                    "parser": "json12345",
+                    "parser": "json",
                     "test": "5"  # Adjust this as needed
                 }
             })
