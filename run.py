@@ -111,8 +111,8 @@ def upload_to_api(file_path):
                 "sev": int(event.get('sev', 3)),  # Severity as integer
                 "attrs": {
                     "message": message,
-                    "parser": "json12345",
-                    "test": "5"  # Adjust this as needed
+                    "parser": "json",
+                    "test": "7"  # Adjust this as needed
                 }
             })
         
@@ -255,4 +255,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-    call_static_script()
+   # call_static_script()
