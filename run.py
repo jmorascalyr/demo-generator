@@ -112,7 +112,7 @@ def upload_to_api(file_path):
                 "attrs": {
                     "message": message,
                     "parser": "json",
-                    "test": "5"  # Adjust this as needed
+                    "test": "7"  # Adjust this as needed
                 }
             })
         
@@ -255,4 +255,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-    call_static_script()
+   # call_static_script()
