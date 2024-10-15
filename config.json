@@ -3,7 +3,7 @@
     {
         "name": "windows event logs client",
         "query": "agent.uuid = * endpoint.name contains 'W10-Attk'  event.type='Behavioral Indicators' | group timestamp = oldest(timestamp), count = count() by agent.uuid, endpoint.name | limit 1",
-        "time_offset":  ["-119s", "-115s", "-113s", "-3s", "+30s", "+40s"],
+        "time_offset":  ["-119s", "-115s", "-113s", "-3s", "+30s"],
         "time_offset_default": "+5m",
         "startTime": "1d",
         "endTime": "0h",
