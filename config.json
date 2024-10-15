@@ -2,28 +2,28 @@
     
     {
         "name": "windows event logs client",
-        "query": "agent.uuid = * endpoint.name contains 'W10-Attk'| group timestamp = oldest(timestamp), count = count() by agent.uuid, endpoint.name | limit 1",
-        "time_offset": ["+1m", "-5m", "+2m"],
+        "query": "agent.uuid = * endpoint.name contains 'W10-Attk'  event.type='Behavioral Indicators' | group timestamp = oldest(timestamp), count = count() by agent.uuid, endpoint.name | limit 1",
+        "time_offset":  ["-119s", "-115s", "-113s", "-3s", "+30s"],
         "time_offset_default": "+5m",
-        "startTime": "8d",
+        "startTime": "1d",
         "endTime": "0h",
         "file": "wel-client.json"
     },
     {
         "name": "windows server client",
-        "query": "agent.uuid = * endpoint.name contains 'BORG'| group timestamp = oldest(timestamp), count = count() by agent.uuid, endpoint.name | limit 1",
-        "time_offset": ["+1m", "-5m", "+2m"],
+        "query": "|join borg = (agent.uuid = * endpoint.name contains 'theBorg-' | group timestamp = oldest(timestamp), count = count() by endpoint.name, agent.uuid, a = 1 | columns timestamp, count, endpoint.name, agent.uuid|limit 1), win10 = (agent.uuid = * endpoint.name contains 'W10-Attk'  event.type='Behavioral Indicators' | group timestamp = oldest(timestamp), count = count() by endpoint.name, agent.uuid | columns timestamp, count, endpoint.name, agent.uuid, a = 1) |columns  agent.uuid = borg.agent.uuid, endpoint.name = borg.endpoint.name,  timestamp = win10.timestamp, count = borg.count",
+        "time_offset": ["+40s", "+45s", "+50s"],
         "time_offset_default": "-5m",  
-        "startTime": "8d",
+        "startTime": "1d",
         "endTime": "0h",
         "file": "wel-server.json"
     },
     {
         "name": "okta",
-        "query": "agent.uuid = * | limit 1 | columns timestamp",
-        "time_offset": ["-800s", "-755s", "-743s","-733s","-725s","-724s","-712s","-699s","-690s","-685s", "-645s", "-665s"],
+        "query": "endpoint.name contains 'W10-Attk'  event.type='Behavioral Indicators'  | group timestamp = oldest(timestamp)| limit 1",
+        "time_offset": ["-170s", "-165s", "-160s","-155s","-150s","-145s","-140s","-138s","-130s","-125s", "-122s", "-120s"],
         "time_offset_default": "-5m",  
-        "startTime": "8d",
+        "startTime": "1d",
         "endTime": "0h",
         "file": "okta.json"
     }
